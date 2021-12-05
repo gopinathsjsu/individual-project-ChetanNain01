@@ -13,6 +13,7 @@ import javax.servlet.http.Part;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.HashMap;
 
 
 @WebServlet(
@@ -67,9 +68,19 @@ public class OrderServlet extends HttpServlet {
     private String isValidRequest(String[] requestContent, HttpServletResponse resp) throws IOException {
         String invalidRequestString = "";
         Items items = new Items();
-        for(int i = 1; i < requestContent.length; i++ ){
+        HashMap<String, Integer> categoryCountMap = new HashMap<>();
+        for(int i = 1; i < requestContent.length; i++){
             String orderedItemName = getItemName(requestContent[i]);
             int orderedItemQuantity = getItemQuantity(requestContent[i]);
+            String category = items.getCategory(orderedItemName);
+            int val = categoryCountMap.getOrDefault(category, 0)  + orderedItemQuantity;
+            if(val > getCapValue(category)){
+                System.out.println("Cap Value =" + getCapValue(category));
+                System.out.println("Category =" + category);
+                invalidRequestString = "Luxuary can be a max. of 3, Essential can be a max. of 5 \n and Misc can be a max. of 6.";
+            }
+            categoryCountMap.put(category, categoryCountMap.getOrDefault(category, 0) + orderedItemQuantity);
+            System.out.println(categoryCountMap);
             for(Map.Entry<String, Item> set: items.itemMap.entrySet()){
                 if(set.getKey().equalsIgnoreCase(orderedItemName)){
                     if(set.getValue().getAvailableQuantity() < orderedItemQuantity){
@@ -108,5 +119,17 @@ public class OrderServlet extends HttpServlet {
 
     private Integer getPaymentCardNumber(String orderStr) {
         return Integer.getInteger(orderStr.split(",")[2]);
+    }
+
+    private int getCapValue(String categoryName) {
+        Items item = new Items();
+        if(categoryName.equalsIgnoreCase("Essential")){
+            return item.getEssentialCapValue();
+        }else if(categoryName.equalsIgnoreCase("Misc")){
+            return item.getMiscCapValue();
+        }else if(categoryName.equalsIgnoreCase("Luxury")){
+            return item.getLuxaryCapValue();
+        }
+        return 0;
     }
 }
