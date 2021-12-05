@@ -1,7 +1,9 @@
 package com.sample.model;
 import java.util.HashMap;
 
-public class Items {
+import com.sample.interfaces.IPrototype;
+
+public class Items implements IPrototype{
 
     public HashMap<String, Item> itemMap = new HashMap<String, Item>();
     private int essentialCapValue = 5;
@@ -39,4 +41,9 @@ public class Items {
     public String getCategory(String itemName){
         return itemMap.get(itemName).getCategory();
     }
+
+    @Override  
+    public IPrototype getClone() {  
+        return new Items(); 
+    } 
 }

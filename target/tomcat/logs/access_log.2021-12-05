@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:28:06 -0800] "GET /StoreApp/ HTTP/1.1" 304 - http-bio-8080-exec-1 33
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:28:17 -0800] "POST /StoreApp/order HTTP/1.1" 200 36 http-bio-8080-exec-4 21
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:28:22 -0800] "GET /StoreApp/ HTTP/1.1" 304 - http-bio-8080-exec-7 2
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:28:29 -0800] "POST /StoreApp/order HTTP/1.1" 200 63 http-bio-8080-exec-10 6
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:28:34 -0800] "GET /StoreApp/ HTTP/1.1" 304 - http-bio-8080-exec-10 1
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:38:01 -0800] "GET /StoreApp/ HTTP/1.1" 304 - http-bio-8080-exec-1 33
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:08:38:11 -0800] "POST /StoreApp/order HTTP/1.1" 200 63 http-bio-8080-exec-3 24
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:09:35:06 -0800] "POST /StoreApp/order HTTP/1.1" 200 63 http-bio-8080-exec-1 48
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:09:35:14 -0800] "POST /StoreApp/order HTTP/1.1" 200 36 http-bio-8080-exec-4 10
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:09:35:22 -0800] "POST /StoreApp/order HTTP/1.1" 200 39 http-bio-8080-exec-7 5
+0:0:0:0:0:0:0:1 - - [05/Dec/2021:09:35:42 -0800] "POST /StoreApp/order HTTP/1.1" 200 36 http-bio-8080-exec-9 5

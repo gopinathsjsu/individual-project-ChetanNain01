@@ -14,6 +14,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.HashMap;
+import com.sample.interfaces.IOrderServletInterface;
 
 
 @WebServlet(
@@ -21,9 +22,9 @@ import java.util.HashMap;
         urlPatterns = "/order"
 )
 @MultipartConfig
-public class OrderServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet implements IOrderServletInterface {
     private static final int BUFFER_SIZE = 2048;
-
+    Items itemsObj = new Items();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/plain");
@@ -54,7 +55,8 @@ public class OrderServlet extends HttpServlet {
         }
     }
 
-    private String getTextFromPart(Part part) throws IOException {
+    @Override
+    public String getTextFromPart(Part part) throws IOException {
         BufferedReader reader =
                 new BufferedReader(new InputStreamReader(part.getInputStream(), "UTF-8"));
         StringBuilder value = new StringBuilder();
@@ -65,9 +67,10 @@ public class OrderServlet extends HttpServlet {
         return value.toString();
     }
 
-    private String isValidRequest(String[] requestContent, HttpServletResponse resp) throws IOException {
+    @Override
+    public String isValidRequest(String[] requestContent, HttpServletResponse resp) throws IOException {
         String invalidRequestString = "";
-        Items items = new Items();
+        Items items =(Items) itemsObj.getClone();  
         HashMap<String, Integer> categoryCountMap = new HashMap<>();
         for(int i = 1; i < requestContent.length; i++){
             String orderedItemName = getItemName(requestContent[i]);
@@ -93,9 +96,10 @@ public class OrderServlet extends HttpServlet {
         return invalidRequestString;
     }
 
-    private double calculateTotalAmountPaid(String requestContent[]){
+    @Override
+    public double calculateTotalAmountPaid(String requestContent[]){
         double amountPaid = 0;
-        Items items = new Items();
+        Items items =(Items) itemsObj.getClone();
         for(int i = 1; i < requestContent.length; i++ ){
             String orderedItemName = getItemName(requestContent[i]);
             int orderedItemQuantity = getItemQuantity(requestContent[i]);
@@ -121,8 +125,9 @@ public class OrderServlet extends HttpServlet {
         return Integer.getInteger(orderStr.split(",")[2]);
     }
 
-    private int getCapValue(String categoryName) {
-        Items item = new Items();
+    @Override
+    public int getCapValue(String categoryName) {
+        Items item =(Items) itemsObj.getClone();
         if(categoryName.equalsIgnoreCase("Essential")){
             return item.getEssentialCapValue();
         }else if(categoryName.equalsIgnoreCase("Misc")){
