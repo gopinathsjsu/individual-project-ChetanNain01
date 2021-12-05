@@ -30,6 +30,8 @@ The homepage of the application:
 ![image](https://user-images.githubusercontent.com/91368366/144767981-7f5ca2ec-b8e7-4054-904f-65cb7ca40612.png)
 
 Output on a valid input:
+
+
 ![image](https://user-images.githubusercontent.com/91368366/144767995-64144900-e72f-4257-b50c-5e2b2df51b25.png)
 
 
@@ -37,6 +39,10 @@ Output on an invalid input:
 
 ![image](https://user-images.githubusercontent.com/91368366/144768005-69a91f2d-958c-4383-a70f-432c679be441.png)
 
+
+Screenshot of the application:
+
+![image](https://user-images.githubusercontent.com/91368366/144768064-e2729575-846c-4c15-b076-a5d02d9c3a27.png)
 
 ## Design Patterns Used
 
