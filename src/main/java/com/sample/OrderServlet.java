@@ -14,8 +14,9 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.HashMap;
-import com.sample.interfaces.IOrderServletInterface;
+import java.util.List;
 
+import com.sample.interfaces.IOrderServletInterface;
 
 @WebServlet(
         name = "OrderServlet",
@@ -40,12 +41,17 @@ public class OrderServlet extends HttpServlet implements IOrderServletInterface 
                     if(!cards.getCardList().contains(getPaymentCardNumber(requestContent[i]))){
                         cards.getCardList().add(getPaymentCardNumber(requestContent[i]));
                         cards.setCardList(cards.getCardList());
+                        List<Integer> cardList = cards.getCardList();
+                        for(int j=0;j<cardList.size();j++){
+                            System.out.println(cardList.get(j));
+                        }
                     }
                 }
+                
                 double totalAmountPaid = calculateTotalAmountPaid(requestContent);
                 outputTxt = "Total amount paid: \n "+ totalAmountPaid;
             } else {
-                outputTxt = "Please correct quantities\n"+ invalidRequestStr;
+                outputTxt = "Please correct the following quantities\n"+ invalidRequestStr;
             }
             outputStream.write(outputTxt.getBytes(StandardCharsets.UTF_8));
             outputStream.flush();
