@@ -76,9 +76,11 @@ public class Cards {
 }
 ```
 
-### Abstract Factory
+### Factory Design Pattern
 
-Since Abstract Factory is used to create related objects without specifying their concrete classes. I have used it to create the OrderServlet class.
+Factory Method provides us an interface for creating objects in a superclass but allows subclasses to to chnage the object. It is one of the best ways to create objects.
+Here I have defined the IOrderServletInterface which helps us in defining the properties of the Servlet class that will be inheriting the interface.
+
 
 ```java
 public interface IOrderServletInterface {
@@ -89,37 +91,11 @@ public interface IOrderServletInterface {
 }
 ```
 
-### Prototype
-Prototype is a creational design pattern that lets you copy existing objects without making your code dependent on their classes.
+### Chain-of-Responsibility Pattern: 
 
-Defining the object in the IPrototype interface: 
-```java
-public interface IPrototype {
-    public IPrototype getClone();     
-}
-```
-and then in the items.java file 
-```java
-public IPrototype getClone() {  
-        return new Items(); 
-    } 
-```
-and finally in the OrderServlet.java
-```java
- public int getCapValue(String categoryName) {
-        Items item =(Items) itemsObj.getClone();
-        if(categoryName.equalsIgnoreCase("Essential")){
-            return item.getEssentialCapValue();
-        }else if(categoryName.equalsIgnoreCase("Misc")){
-            return item.getMiscCapValue();
-        }else if(categoryName.equalsIgnoreCase("Luxury")){
-            return item.getLuxaryCapValue();
-        }
-        return 0;
-    }
-
-```
+The chain-of-responsibility design pattern is a behavioral design pattern that consists of command objects and a sequence of processing objects. Each processing object contains logic that defines the types of command objects that it can handle; the rest are passed to the next processing object in the chain. A mechanism also exists for adding new processing objects to the end of this chain. In the code I will be proceeding ahead with the orders only when the stock items of that particular type is available. This is one of the implementation of this design pattern.
 
 ## Class Diagram
 
+![image](https://user-images.githubusercontent.com/91368366/144796629-dc000087-d0e9-4268-8e5a-7a26115d748e.png)
 
