@@ -39,10 +39,15 @@ Output on an invalid input:
 
 ![image](https://user-images.githubusercontent.com/91368366/144768005-69a91f2d-958c-4383-a70f-432c679be441.png)
 
+Screenshot of the list of Cards:
+
+![image](https://user-images.githubusercontent.com/91368366/144787486-503e16bf-0e23-4fa8-85c9-4646ba3845e3.png)
+
 
 Screenshot of the application:
 
 ![image](https://user-images.githubusercontent.com/91368366/144768064-e2729575-846c-4c15-b076-a5d02d9c3a27.png)
+
 
 ## Design Patterns Used
 
@@ -114,3 +119,7 @@ and finally in the OrderServlet.java
     }
 
 ```
+
+## Class Diagram
+
+
